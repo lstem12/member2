@@ -1,0 +1,13 @@
+/*
+ * table name : user_info
+ * columne 정보
+ * 1) num number 10자리
+ * 2) name varchar2 20byte
+ * 3) etc varchar2 2000byte
+ * 
+ * swap - 스왑해서 바꾸는 방법
+ * 
+ * <자바의 장점> - 플랫폼에 귀속되지 않음
+ * wora
+ * wore
+ */
