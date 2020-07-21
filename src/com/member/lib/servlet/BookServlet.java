@@ -65,6 +65,9 @@ public class BookServlet extends HttpServlet {
 			book.put("b_author", bAuthor);
 			book.put("b_desc", bDesc);
 			Map<String, Object> rMap = bookService.insertBook(book);
+			if(rMap.get("msg").equals("도서입력성공")) {
+				response.sendRedirect("/book/list");
+			}
 			doProcess(response, rMap.toString());
 		}else if ("/book/update".equals(uri)) {
 			String bTitle = request.getParameter("b_title");
@@ -78,10 +81,17 @@ public class BookServlet extends HttpServlet {
 			book.put("b_desc", bDesc);
 			book.put("b_num", bNum);
 			Map<String, Object> rMap = bookService.updateBook(book);
+			if(rMap.get("msg").equals("도서수정성공")) {
+				response.sendRedirect("/book/list");
+			}
 			doProcess(response, rMap.toString());
 		} else if ("/book/delete".equals(uri)) {
 			int bNum = Integer.parseInt(request.getParameter("b_num"));
-			doProcess(response, bookService.deleteBook(bNum).toString());
+			Map<String, Object> rMap = bookService.deleteBook(bNum);
+			if(rMap.get("msg").equals("책정보 삭제성공")) {
+				response.sendRedirect("/book/list");
+			}
+			doProcess(response, rMap.toString());
 		}
 
 	}

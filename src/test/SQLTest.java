@@ -13,7 +13,7 @@ public class SQLTest {
 	public static void main(String[] args) throws SQLException {
 		Connection con = Connector.open();
 		String sql = "insert into employee(emp_no, emp_name, emp_credat, emp_salary, grd_no)";
-		sql += "values(seq_emp_no.nextval, ?, sysdate,?,?)";
+		sql += "values(seq_employee_emp_no.nextval, ?, sysdate,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		String[] fNames = {"김","박","이","최","송","신","유"};
 		String[] lNames = {"영수","동수","진혁","미래","철수","미래","상화","상훈","상미","동동","인화","철원","강원","민상"};
