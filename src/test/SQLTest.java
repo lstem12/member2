@@ -23,7 +23,7 @@ public class SQLTest {
 			String lName = lNames[r.nextInt(lNames.length)];
 			String name = fName + lName;
 			int grade = r.nextInt(6)+1;
-			int salary = (r.nextInt(5)+1) * 10000000;
+			int salary = (r.nextInt(5)+1) * 1000000;
 			ps.setString(1,name);
 			ps.setInt(2, salary);
 			ps.setInt(3, grade);

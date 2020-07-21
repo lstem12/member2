@@ -19,4 +19,14 @@
   	<servlet-name>MemberServlet</servlet-name>
   	<url-pattern>/member/*</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>BookServlet</servlet-name>
+  	<servlet-class>com.member.lib.servlet.BookServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>BookServlet</servlet-name>
+  	<url-pattern>/book/*</url-pattern>
+  </servlet-mapping>
 </web-app>
