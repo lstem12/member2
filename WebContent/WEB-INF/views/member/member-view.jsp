@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-<%@ include file="/WEB-INF/views/common/common.jsp" %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +9,25 @@
 <body>
 <table border="1">
 	<tr>
-		<th>이름</th>
-		<th>아이디</th>
-		<th>패스워드</th>
-		<th>가입일</th>
+		<th>번호</th>
+		<td>${member.m_num}</td>
 	</tr>
-<c:forEach items="${memberList}" var="member">
 	<tr>
+		<th>이름</th>
 		<td>${member.m_name}</td>
-		<td><a href="/member/view?m_num=${member.m_num}">${member.m_id}</a></td>
+	</tr>
+	<tr>
+		<th>아이디</th>
+		<td>${member.m_id}</td>
+	</tr>
+	<tr>
+		<th>비밀번호</th>
 		<td>${member.m_pwd}</td>
+	</tr>
+	<tr>
+		<th>가입일</th>
 		<td>${member.m_credat}</td>
 	</tr>
-</c:forEach>
 </table>
 </body>
 </html>
