@@ -18,7 +18,7 @@
 	</tr>
 	<c:forEach items="${lentList}" var="lent">
 		<tr>
-			<td>${lent.l_num}</td>
+			<td><a href="/lent/view?l_num=${lent.l_num}">${lent.l_num}</a></td>
 			<td>${lent.l_lentdate}</td>
 			<td>${lent.l_recdate}</td>
 			<td>${lent.m_name}</td>

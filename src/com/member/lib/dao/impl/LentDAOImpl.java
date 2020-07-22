@@ -53,13 +53,11 @@ public class LentDAOImpl implements LentDAO {
 		try {
 			con = Connector.open();
 			String sql = "update lent";
-			sql += " set m_num=?,";
-			sql += " b_num=?";
+			sql += " set l_recdate=?";
 			sql += " where l_num=?";
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, (int) lent.get("m_num"));
-			ps.setInt(2, (int) lent.get("b_num"));
-			ps.setInt(3, (int) lent.get("l_num"));
+			ps.setString(1, lent.get("l_recdate").toString());
+			ps.setInt(2, (int) lent.get("l_num"));
 			result = ps.executeUpdate();
 			con.commit();
 		} catch (Exception e) {
@@ -160,7 +158,10 @@ public class LentDAOImpl implements LentDAO {
 		
 		try {
 			con = Connector.open();
-			String sql = "select l_num, l_lentdate, l_recdate, m_num, b_num from lent where l_num=?";
+			String sql = "select l.*, m.m_name, b.b_title from lent l, member m, book b\r\n" + 
+					"					where l.m_num=m.m_num \r\n" + 
+					"					and b.b_num=l.b_num\r\n" + 
+					"                    and l_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, lNum);
 			rs = ps.executeQuery();
@@ -169,8 +170,8 @@ public class LentDAOImpl implements LentDAO {
 				map.put("l_num", rs.getInt("l_num"));
 				map.put("l_lentdate", rs.getString("l_lentdate"));
 				map.put("l_recdate", rs.getString("l_recdate"));
-				map.put("m_num", rs.getInt("m_num"));
-				map.put("b_num", rs.getInt("b_num"));
+				map.put("m_name", rs.getString("m_name"));
+				map.put("b_title", rs.getString("b_title"));
 				return map;
 			}
 		}catch(Exception e) {
