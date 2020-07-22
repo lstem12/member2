@@ -21,8 +21,8 @@ public class LentDAOImpl implements LentDAO {
 		int result = 0;
 		try {
 			con = Connector.open();
-			String sql = "insert into lent(l_num, l_lentdate, l_recdate, m_num, b_num)";
-			sql += " values(seq_lent_l_num.nextval, sysdate, sysdate + (interval '7' DAY), ?, ?)";
+			String sql = "insert into lent(l_num, l_lentdate, m_num, b_num)";
+			sql += " values(seq_lent_l_num.nextval, sysdate, ?, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, (int) lent.get("m_num"));
 			ps.setInt(2, (int) lent.get("b_num"));
@@ -116,7 +116,9 @@ public class LentDAOImpl implements LentDAO {
 		ResultSet rs = null;
 		try {
 			con = Connector.open();
-			String sql = "select l_num, l_lentdate, l_recdate, m_num, b_num from lent";
+			String sql = "select l.*, m.m_name, b.b_title from lent l, member m, book b\r\n" + 
+					"where l.m_num=m.m_num\r\n" + 
+					"and b.b_num=l.b_num";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -126,12 +128,17 @@ public class LentDAOImpl implements LentDAO {
 				map.put("l_recdate", rs.getString("l_recdate"));
 				map.put("m_num", rs.getInt("m_num"));
 				map.put("b_num", rs.getInt("b_num"));
+				map.put("m_name", rs.getString("m_name"));
+				map.put("b_title", rs.getString("b_title"));
 				lentList.add(map);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
+				if (rs != null) {
+					rs.close();
+				}
 				if (ps != null) {
 					ps.close();
 				}
@@ -170,6 +177,9 @@ public class LentDAOImpl implements LentDAO {
 			e.printStackTrace();
 		} finally {
 			try {
+				if (rs != null) {
+					rs.close();
+				}
 				if (ps != null) {
 					ps.close();
 				}
@@ -204,6 +214,45 @@ public class LentDAOImpl implements LentDAO {
 		
 		System.out.println(ldao.selectLent(41));
 		
+	}
+
+	@Override
+	public List<Map<String, Object>> selectNoLentBookList() {
+		List<Map<String, Object>> lentList = new ArrayList<Map<String, Object>>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = Connector.open();
+			String sql = "select b_num, b_title from book\r\n" + 
+					"where b_num not in(select b_num from lent\r\n" + 
+					"where l_recdate is null)";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<>();
+				map.put("b_num", rs.getInt("b_num"));
+				map.put("b_title", rs.getString("b_title"));
+				lentList.add(map);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return lentList;
 	}
 
 }

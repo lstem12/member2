@@ -80,4 +80,10 @@ public class LentServiceImpl implements LentService {
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> selectNoLentBookList() {
+
+		return lentDAO.selectNoLentBookList();
+	}
+
 }
