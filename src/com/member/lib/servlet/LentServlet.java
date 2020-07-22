@@ -24,6 +24,10 @@ public class LentServlet extends HttpServlet {
 			request.setAttribute("bookList", lentService.selectNoLentBookList());
 			RequestDispatcher rd = request.getRequestDispatcher("/views/lent/lent-insert");
 			rd.forward(request, response);
+		}else if("/lent/list".equals(uri)) {
+			request.setAttribute("lentList", lentService.selectLentList(null));
+			RequestDispatcher rd = request.getRequestDispatcher("/views/lent/lent-list");
+			rd.forward(request, response);
 		}
 	}
 
@@ -35,8 +39,9 @@ public class LentServlet extends HttpServlet {
 			Map<String, Object> lent = new HashMap<>();
 			lent.put("b_num", bNum);
 			lent.put("m_num", mNum);
-			lentService.insertLent(lent);
-			RequestDispatcher rd = request.getRequestDispatcher("/view/common/msg");
+			Map<String, Object> rMap = lentService.insertLent(lent);
+			request.setAttribute("rMap", rMap);
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg");
 			rd.forward(request, response);
 		}
 	}

@@ -8,8 +8,11 @@
 </head>
 <body>
 <script>
-	alert("${rMap.msg}");
-	location.href="${rMap.url}";
+		alert("${rMap.msg}");
+		location.href="${rMap.url}";
+
+
+
 </script>
 </body>
 </html>
