@@ -159,9 +159,9 @@ public class LentDAOImpl implements LentDAO {
 		try {
 			con = Connector.open();
 			String sql = "select l.*, m.m_name, b.b_title from lent l, member m, book b\r\n" + 
-					"					where l.m_num=m.m_num \r\n" + 
-					"					and b.b_num=l.b_num\r\n" + 
-					"                    and l_num=?";
+					"where l.m_num=m.m_num \r\n" + 
+					"and b.b_num=l.b_num\r\n" + 
+					"and l_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, lNum);
 			rs = ps.executeQuery();
