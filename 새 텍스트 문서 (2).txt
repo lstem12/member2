@@ -47,3 +47,8 @@
  
  레이지 로딩, 프리 로딩
  
+ <c:if test="${list == null}">
+list가 없네요.
+</c:if>
+<c:if test="${empty list}">
+list가 비어있네요.
