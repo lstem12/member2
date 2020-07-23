@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <script>
 		alert("${rMap.msg}");
-		location.href="${rMap.url}";
-
-
-
+		location.href="/lent/list";
 </script>
+
 </body>
 </html>
