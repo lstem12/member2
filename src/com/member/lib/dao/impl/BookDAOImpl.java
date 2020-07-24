@@ -196,14 +196,14 @@ public class BookDAOImpl implements BookDAO {
 	public static void main(String[] args) {
 		BookDAO bdao = new BookDAOImpl();
 		Map<String, Object> map = new HashMap<>();
-		map.put("b_title", "자바의정석");
-		map.put("b_author", "남궁성");
-		map.put("b_desc", "자바의정석입니다.");
-		bdao.insertBook(map);
+//		map.put("b_title", "자바의정석");
+//		map.put("b_author", "남궁성");
+//		map.put("b_desc", "자바의정석입니다.");
+//		bdao.insertBook(map);
 		// System.out.println(bdao.selectBook(1));
 
-		// List<Map<String,Object>> bookList = bdao.selectBookList(map);
-		// System.out.println(bookList);
+		 List<Map<String,Object>> bookList = bdao.selectBookList(map);
+		 System.out.println(bookList);
 
 		// int result = bdao.deleteBook(21);
 		// System.out.println("삭제 갯수 : "+ result);

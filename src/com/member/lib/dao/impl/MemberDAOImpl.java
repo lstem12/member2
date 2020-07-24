@@ -206,8 +206,8 @@ public class MemberDAOImpl implements MemberDAO {
 		//int result = mdao.deleteMember(3);
 		//System.out.println("삭제 갯수 : "+ result);
 		
-		//List<Map<String,Object>> memberList = mdao.selectMemberList(map);
-		//System.out.println(memberList);
+		List<Map<String,Object>> memberList = mdao.selectMemberList(map);
+		System.out.println(memberList);
 		
 		System.out.println(mdao.selectMember(21));
 	}
