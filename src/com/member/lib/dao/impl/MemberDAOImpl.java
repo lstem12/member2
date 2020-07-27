@@ -209,7 +209,7 @@ public class MemberDAOImpl implements MemberDAO {
 		List<Map<String,Object>> memberList = mdao.selectMemberList(map);
 		System.out.println(memberList);
 		
-		//System.out.println(mdao.selectMember(21));
+		System.out.println(mdao.selectMember(21));
 	}
 
 }
