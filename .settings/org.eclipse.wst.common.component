@@ -18,7 +18,7 @@
         
         
         <property name="java-output-path" value="/member-lib2/build/classes"/>
-        <property name="context-root" value="/"/>
+        <property name="context-root" value="member-lib2"/>
                             
     
     
